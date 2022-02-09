@@ -1,22 +1,19 @@
 import sublist3r 
-
-global sd
-sd = []
-
-global d
-d = {}
-
+import json
 
 def subd(sdomain):
+    results = []
+    try:
+        subdomains = sublist3r.main(sdomain, 10, 'required.txt', ports=None, silent=True, verbose=False, enable_bruteforce=False, engines=None)
+        for x in subdomains:
+            results.append(x)
+    except Exception as e:
+        print("subd: " + str(e))
+    return results
 
-    # each of the following fields is required in sublist3r
-    subdomains = sublist3r.main(sdomain, 10, 'required.txt', ports=None, silent=True, verbose=False, enable_bruteforce=False, engines=None)
-    for x in subdomains:
-        sd.append(x)
 
 
-d = {"subdomains": sd}
-
-subd("navyfederal.org")
-print(d)
+results = subd("navyfederal.org")
+d = {"subdomains": results}
+print(json.dumps(d, indent=3))
 
