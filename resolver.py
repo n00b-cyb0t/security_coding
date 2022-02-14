@@ -24,14 +24,14 @@ def addrlookup(hosts, atype):
 print('IP Address(s): ')
 results = addrlookup("navyfederal.org", "A")
 addresses = {"IPv4_addresses": results}
-print(json.dumps(addresses, indent=3))
+print(json.dumps(addresses, indent=3)+"\n")
 
 print("mail server(s): ")
 results = addrlookup("navyfederal.org", "MX")
 addresses2 = {"MX_addresses": results}
-print(json.dumps(addresses2, indent=3))
+print(json.dumps(addresses2, indent=3)+"\n")
 
 print("name server(s): ")
 results = addrlookup("navyfederal.org", "NS")
 addresses3 = {"NS_addresses": results}
-print(json.dumps(addresses3, indent=3))
+print(json.dumps(addresses3, indent=3)+"\n")
