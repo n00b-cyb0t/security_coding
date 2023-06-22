@@ -13,7 +13,7 @@ def subd(sdomain):
 
 
 
-results = subd("navyfederal.org")
+results = subd("domain.org")
 d = {"subdomains": results}
 print(json.dumps(d, indent=3))
 
