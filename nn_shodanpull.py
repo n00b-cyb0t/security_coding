@@ -76,5 +76,5 @@ def shodan_network(key, shodan_filter, company):
 
     #rint(api.search_facets())
 
-shodan_query = shodan_network("api_key_here", "all", "navyfederal")
+shodan_query = shodan_network("api_key_here", "all", "google")
 print(shodan_query)
