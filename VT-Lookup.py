@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 
 import requests
@@ -87,15 +88,18 @@ def query_hash(hash_value: str) -> dict:
         raise RuntimeError(
             f"VirusTotal error {response.status_code}: {response.text}"
         )
+    #print(response.text)
 
     attrs = response.json()["data"]["attributes"]
 
     results = {
+        "name": attrs.get("meaningful_name"),
         "type": "hash",
         "value": hash_value,
         "hash_type": hash_type,
         "found": True,
         "size": attrs.get("size"),
+        "signer": attrs.get("signature_info"),
         "file_type": attrs.get("type_description"),
         "stats": attrs.get("last_analysis_stats", {}),
         "vendors": {}
@@ -124,8 +128,11 @@ def print_results(results: dict):
         if not results.get("found"):
             print("Status: Not found in VirusTotal")
             return
+        print(f"File Name: {results.get('name')}")
         print(f"File Type: {results.get('file_type')}")
         print(f"File Size: {results.get('size')} bytes")
+        print(f"Signer Info: {results.get('signer')}")
+        
 
     print("\nAnalysis Stats:")
     for k, v in results.get("stats", {}).items():
